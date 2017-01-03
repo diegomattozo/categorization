@@ -1,0 +1,12 @@
+Package: multdiscretization
+Type: Package
+Title: Multivariate Discretization Of Continuous Variables.
+Version: 0.0.1
+Authors@R: person("Diego", "Mattozo", email = "diegomattozo@live.com", role = c("aut", "cre"))
+Description: A Method For Multivariate Discretization For Binary Logistic Regression.
+Imports:
+    optiRum,
+    doBy,
+License: GPL-2
+LazyData: TRUE
+RoxygenNote: 5.0.1

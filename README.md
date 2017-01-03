@@ -16,8 +16,8 @@ Onde train é a base de treinamento e validation é a base de validação. O mé
 
 Há alguns método utilitários que podem ajudar no processo de utilização do pacote.
 
-> O método train_test_split(db, test_percentual, seed) ajuda a dividir uma base de dados em treinamento e teste(validação) dado uma o percentual para
-a base de testes e uma semente.
+> O método train_test_split(db, test_percentual, seed) ajuda a dividir uma base de dados em treinamento e teste(validação) dado um percentual para
+a base de testes.
 
 > O método cutpoint_discretization(db, cutpoints) realiza a categorização de uma base de dados através do vetor de pontos de corte retornados no método multivariado.
 

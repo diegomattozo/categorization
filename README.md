@@ -19,7 +19,7 @@ O método de discretização multivariado deve ser utilizado da seguite maneira:
 Onde train é a base de treinamento e validation é a base de validação. O método retorna uma lista com as duas bases discretizadas e com o vetor de pontos de corte.
 
 
-Há alguns funções utilitárias que podem ajudar no processo de utilização do pacote, como por exemplo:
+Há algumas funções utilitárias que podem ajudar no processo de utilização do pacote, como por exemplo:
 
 > O método train_test_split(db, test_percentual, seed) ajuda a dividir uma base de dados em treinamento e teste(validação) dado um percentual para
 a base de testes.

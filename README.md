@@ -2,7 +2,10 @@
 
 Duas classes de métodos de categorização de variáveis explicativas contínuas, para modelos com variável resposta binária estão disponíveis no pacote. A primeira classe de métodos é univariada e busca manter a associação entre a variável resposta e a covariável categorizada através de medidas de associação para variáveis qualitativas. A segunda classe de métodos é multivariada e tenta incorporar a estrutura de dependência entre as covariáveis do modelo através da categorização conjunta de todas as variáveis preditoras.
 
+> IMPORTANTE: Os dois métodos consideram que a variável resposta está na última coluna da base de dados.
+
 A primeira classe de métodos univariados pode ser utilizada da seguinte maneira:
+
 
 > multdiscretization::discretize(db, meth = 4)
 

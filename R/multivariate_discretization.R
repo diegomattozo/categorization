@@ -7,8 +7,7 @@
 #' @export
 # v02 - added m = 3 times in a row
 multdiscretization = function(train, test, alpha=1.005) {
-  cutpoints = quantile_discretization(train)$cuts #extreme cutpoints, min(x)/max(x) or -Inf/Inf are removed.
-  #cutpoints = boundary_cutpoints(train)
+  cutpoints = quantile_discretization(train)$cuts
   varNames = names(train)[-length(train)]
   respName = names(train)[length(train)]
   k = 0
@@ -26,23 +25,16 @@ multdiscretization = function(train, test, alpha=1.005) {
 
     }
     old_giniCoef = best_giniCoef
-    best_gini_varName = calc_best_gini(new_giniCoef, varNames) #retorna nome da covarivel
+    best_gini_varName = calc_best_gini(new_giniCoef, varNames)
     best_giniCoef = new_giniCoef[[best_gini_varName]]
-    #print('Best gini of these loop');print(best_giniCoef)
-    #print('-------------------------------------------------')
 
     if ((old_giniCoef*alpha) > best_giniCoef) {
       stopCriteria = stopCriteria + 1
     }
-    #} else {
-     # stopCriteria = 0
-    #}
+
     cuts_so_far[[best_gini_varName]] = new_cutp[[best_gini_varName]]
     k = k + 1
-    print(cuts_so_far)
-    print('--------------------------------')
   }
-  print("k eh igual a: "); print(k)
 
 
   list('train' = cutpoint_discretization(train, cuts_so_far), 'test' = cutpoint_discretization(test, cuts_so_far), 'cuts'=cuts_so_far,

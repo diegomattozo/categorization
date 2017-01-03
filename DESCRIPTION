@@ -1,9 +1,9 @@
 Package: multdiscretization
 Type: Package
-Title: Multivariate Discretization Of Continuous Variables.
+Title: Categorization Of Continuous Variables.
 Version: 0.0.1
 Authors@R: person("Diego", "Mattozo", email = "diegomattozo@live.com", role = c("aut", "cre"))
-Description: A Method For Multivariate Discretization For Binary Logistic Regression.
+Description: Categorization of continuous covariates for Binary Regression Models.
 Imports:
     optiRum,
     doBy,

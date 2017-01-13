@@ -31,17 +31,16 @@ quantile_disc = function(cov1,n=30) {
 cutpoints = function(x, n=30) {
   len = length(x)
   if (len >= 30){ #data must have 30 observations
-    if (len %/% n == 0) { n = 30 }
-    if (len > n*200) { n = floor(0.005*len) }
+    if (len %/% n == 0) { n = 30 }   
+    if (len > n*200) { n = floor(0.005*len) } 
     n_perc = len %/% n
     quants = seq(from=0, to=1, by=(100/n_perc)/100); quants[length(quants)] = 1
     #quants = quants[c(-1, -length(quants))]
-
+    
     cpts = quantile(x, quants)
     #print(cpts)
-  } else { stop("Error: Data must have at least 30 observations.")}
-
-  return(unique(cpts))
+  } else { stop("Error: Data must have at least 30 observations.")} 
+  unique(cpts[order(cpts)])
 }
 
 

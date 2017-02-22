@@ -53,3 +53,32 @@ initialize_cutpoints = function(varNames) {
   }
   initial_cutpoints
 }
+
+#' Categorize a database from the cutpoints returned from Univariate Methods.
+#'
+#' @param db: database (data.frame)
+#' @parm cutpoints: vector of cutpoints (numeric)
+#'
+#' @return list containing discretized database (list)
+#' @export
+#'
+#' @examples
+disc_from_cuts = function (db, cutpoints) {
+  len = length(db)
+  Names = names(db)[-length(db)]; respName = names(db)[len]
+  resp = db[, len]
+  ChList = list()
+  k=1
+  for (i in Names) {
+    cuts = unlist(cutpoints[i])
+    cuts[1] = -Inf;cuts[length(cuts)] = Inf
+    #if (k==3) { print(findInterval(testDB[[i]], cuts, rightmost.closed = TRUE)) }
+    covaux = findInterval(db[[i]], cuts, rightmost.closed = TRUE)
+    covaux = as.factor(covaux)
+    ChList[[i]] = covaux
+    k=k+1
+  }
+  ChList[[respName]] = resp
+  data =  as.data.frame(ChList)
+
+}

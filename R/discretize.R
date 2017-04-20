@@ -9,12 +9,12 @@
 #'
 #' @return list with discretized data and vector of cutpoints.
 #' @export
-discretize = function(db, meth = 4, alpha = 1.05, n=30, prediscretized = F) { #Discretize Variables
+discretize = function(db, meth = 4, alpha = 0.05, n=30, prediscretized = F) { #Discretize Variables
   if(!is.data.frame(db)) stop('db must be a dataframe')
   if(meth < 1 || meth > 5) stop('method must be 1-5')
 
   if ( prediscretized == F)  db = DiscByQuantile(db,n)$data#preprocessing the data.
-
+  alpha = 1 + alpha
   Names = names(db)[-length(db)]
   resp = db[ ,length(db)]
   ChList = list()

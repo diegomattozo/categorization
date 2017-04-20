@@ -3,3 +3,7 @@
 .Rbuildignore
 multdiscretization.Rproj
 .Rhistory
+alpha_corre_cov.csv
+alphas/
+results/
+result_ind/

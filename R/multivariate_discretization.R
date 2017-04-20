@@ -6,10 +6,11 @@
 #' @return Discretized Dataframe.
 #' @export
 # v02 - added m = 3 times in a row
-multdiscretization = function(train, test, alpha=1.005) {
+multdiscretization = function(train, test, alpha=0.005) {
   cutpoints = quantile_discretization(train)$cuts
   varNames = names(train)[-length(train)]
   respName = names(train)[length(train)]
+  alpha = 1 + alpha
   k = 0
   stopCriteria = 0
   old_giniCoef = 0

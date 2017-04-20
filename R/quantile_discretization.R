@@ -1,4 +1,3 @@
-## Quantile discretization for multivariate model.
 quantile_disc = function(cov1,n=30) {
 
   cuts <- cutpoints(as.vector(cov1), n)
@@ -107,7 +106,7 @@ DiscByQuantile = function(db, n = 30) {
 }
 
 
-#' Discretize a continuous database by quantile. To be used by the Multivariate Method.
+#' Discretize a continuous database by quantile.
 #'
 #' @param db Dataframe to discretize.
 #' @param n Numer of observations by quantile.

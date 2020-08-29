@@ -8,7 +8,7 @@ In this R package there are two supervised categorization methods of continuous 
 
 ## Usage
 
-> IMPORTANT: The R functions for the two categorization methods expect that the last column is the response variable:
+> IMPORTANT: The R functions for the two categorization methods expect that the last column of your table is the response variable. For example:
 
 |  X1 |  X2 |  Y  |
 | --- | ----| ----|

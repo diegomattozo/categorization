@@ -1,32 +1,45 @@
-> Tutorial para instalação de pacotes do R disponíveis no Github: https://cran.r-project.org/web/packages/githubinstall/vignettes/githubinstall.html
+## Installation
 
-Dois métodos de categorização de variáveis explicativas contínuas, para modelos com variável resposta binária, estão disponíveis no pacote. A primeira classe de métodos é univariada e busca manter a associação entre a variável resposta e a covariável categorizada através de medidas de associação para variáveis qualitativas. A segunda classe de métodos é multivariada e tenta incorporar a estrutura de dependência entre as covariáveis do modelo através da categorização conjunta de todas as variáveis preditoras.
+> Install this package following the tutorial for installing R packages from github in: https://cran.r-project.org/web/packages/githubinstall/vignettes/githubinstall.html
 
-> IMPORTANTE: Os dois métodos consideram que a variável resposta está na última coluna da base de dados.
+## Introduction
 
-A primeira classe de métodos univariados pode ser utilizada da seguinte maneira:
+In this R package there are two supervised categorization methods of continuous predictor variables for binary response models. The first is a class of univariate methods that seeks to keep the association between the response variable and the categorized covariate using qualitative association metrics like Information Statistics and Kendalls Tau-C. The second is a multivariate method that seeks to maintain the dependency structure between the predictor variables by searching, for each step of the algorithm, the best cutpoint in the space of all possible cutpoints for all the predictor variables.  
+
+## Usage
+
+> IMPORTANT: The R functions for the two methods expect that the dataset are in the following format:
+
+|  X1 |  X2 |  Y  |
+| --- | ----| ----|
+| X11 | X12 | X13 |
+| X21 | X22 | X23 |
+| X31 | X32 | X23 |
 
 
-> multdiscretization::discretize(db, meth = 4)
+### Univariate
 
-Onde db é a base de dados a ser discretizada e meth é a medida de associação a ser utilizada pela categorização. Há 5 medidas distintas. 1) Caim, 
-2) Cacc 3) Ameva 4) Information Value e 5) Kendall's Tau-C. O método retorna uma lista com a base de dados categorizada e com os pontos de corte definidos.
+> multdiscretization::discretize(table, meth = 4)
 
-O método de discretização multivariado deve ser utilizado da seguite maneira:
+In which table is the dataset to be categorized and meth is choosen association metric. There are five association metrics: 1) Caim, 
+2) Cacc 3) Ameva 4) Information Value e 5) Kendall's Tau-C. The return value is a R list (associative array) with the transformed dataset and the cutpoints for each predictor variable.
+
+### Multivariate
 
 > multdiscretization::multdiscretization(train, validation)
 
-Onde train é a base de treinamento e validation é a base de validação. O método retorna uma lista com as duas bases discretizadas e com o vetor de pontos de corte.
+In this method the best cutpoints are selected from a validation dataset to avoid overfitting so you must pass a training and a validation dataset. The return value is a R list with the two categorized datasets and the vector of cutpoints for all variables. 
 
+#### Helper methods
 
-Há algumas funções utilitárias que podem ajudar no processo de utilização do pacote, como por exemplo:
+> train_test_split(db, test_percentual, seed)
 
-> O método train_test_split(db, test_percentual, seed) ajuda a dividir uma base de dados em treinamento e teste(validação) dado um percentual para
-a base de testes.
+This function splits the dataset in training and test following.
 
-> O método cutpoint_discretization(db, cutpoints) realiza a categorização de uma base de dados através do vetor de pontos de corte retornados no método multivariado.
+> cutpoint_discretization(db, cutpoints) 
 
+This function applies the cutpoints from the multivariate method in a new dataset.
 
-Para mais informações digite ??multdiscretization no R.
+For more  detailed information of each method type ??multdiscretization no R.
 
 

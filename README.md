@@ -12,34 +12,40 @@ In this R package there are two supervised categorization methods of continuous 
 
 |  X1 |  X2 |  Y  |
 | --- | ----| ----|
-| X11 | X12 | X13 |
-| X21 | X22 | X23 |
-| X31 | X32 | X23 |
+| X11 | X12 | Y13 |
+| X21 | X22 | Y23 |
+| X31 | X32 | Y23 |
 
 
 ### Univariate
 
-> multdiscretization::discretize(table, meth = 4)
+`multdiscretization::discretize(table, meth = 4)`
 
-In which table is the dataset to be categorized and meth is choosen association metric. There are five association metrics: 1) Caim, 
-2) Cacc 3) Ameva 4) Information Value e 5) Kendall's Tau-C. The return value is a R list (associative array) with the transformed dataset and the cutpoints for each predictor variable.
+In which table is the dataset to be categorized and meth is the chosen association metric. There are five association metrics: 
+  1. Caim 
+  2. Cacc 
+  3. Ameva 
+  4. Information Value 
+  5. Kendall's Tau-C. 
+
+The return value is a R list (associative array) with the transformed dataset and the cutpoints for each predictor variable.
 
 ### Multivariate
 
-> multdiscretization::multdiscretization(train, validation)
+`multdiscretization::multdiscretization(train, validation)`
 
 In this method the best cutpoints are selected from a validation dataset to avoid overfitting so you must pass a training and a validation dataset. The return value is a R list with the two categorized datasets and the vector of cutpoints for all variables. 
 
 #### Helper methods
 
-> train_test_split(db, test_percentual, seed)
+`train_test_split(db, test_percentual, seed)`
 
-This function splits the dataset in training and test following.
+Helper function to randomly split your training dataset.
 
-> cutpoint_discretization(db, cutpoints) 
+`cutpoint_discretization(db, cutpoints)`
 
 This function applies the cutpoints from the multivariate method in a new dataset.
 
-For more  detailed information of each method type ??multdiscretization no R.
+For more  detailed information of each method type `??multdiscretization` in R.
 
 

@@ -1,8 +1,3 @@
-#' Calculates the Ameva Coefficient
-#'
-#' @param tb Discretization Scheme (table)
-#'
-#' @return Ameva Coeficient (numeric)
 ameva = function (tb) 
 {
   nr <- dim(tb)[1]

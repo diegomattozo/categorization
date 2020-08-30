@@ -54,13 +54,13 @@ initialize_cutpoints = function(varNames) {
   initial_cutpoints
 }
 
-#' Categorize a database from the cutpoints returned from Univariate Methods.
+#' Categorize a dataset from the cutpoints returned from Univariate Methods.
 #'
-#' @param db: database (data.frame)
+#' @param db: dataset (data.frame)
 #' @param quantile_cutpoints: vector of quantile cutpoints (numeric)
 #' @param cutpoints: vector of cutpoints (numeric)
 #'
-#' @return list containing discretized database (list)
+#' @return list containing discretized dataset (list)
 #' @export
 #'
 #' @examples

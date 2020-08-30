@@ -17,4 +17,3 @@ list containing discretized database (list)
 \description{
 Discretize a database with given cutpoints. To be used with cutpoints returned from multivariate disc.
 }
-

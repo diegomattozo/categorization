@@ -19,4 +19,3 @@ list containing the databases (list)
 \description{
 Separate train and test database.
 }
-

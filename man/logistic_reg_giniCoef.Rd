@@ -19,4 +19,3 @@ Returns the gini coef. of the test dataframe.
 \description{
 Fit logistic regression in the train dataframe and calculates the gini coef. in the test dataframe.
 }
-

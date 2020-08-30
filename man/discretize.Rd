@@ -4,7 +4,7 @@
 \alias{discretize}
 \title{Discretize database via topdown greedy approach. Based on discretization package created by HyunJi Kim.}
 \usage{
-discretize(db, meth = 4, alpha = 1.05, n = 30, prediscretized = F)
+discretize(db, meth = 4, alpha = 0.05, n = 30)
 }
 \arguments{
 \item{db}{database to discretize (data.frame)}
@@ -14,14 +14,11 @@ discretize(db, meth = 4, alpha = 1.05, n = 30, prediscretized = F)
 
 \item{alpha}{Penalization to limit number of categories. Only for methods 4 and 5. (numeric)}
 
-\item{n}{Number of observations per Quantile. If prediscretized = F.}
-
-\item{prediscretized}{Are database prediscretized already? If not we prediscretize by quantile. (logical)}
+\item{n}{Desired Number of observations per Quantile.}
 }
 \value{
-list with discretized data and vector of cutpoints.
+list with discretized data, vector of quantile cutpoints and the supervised method cutpoints.
 }
 \description{
 Discretize database via topdown greedy approach. Based on discretization package created by HyunJi Kim.
 }
-

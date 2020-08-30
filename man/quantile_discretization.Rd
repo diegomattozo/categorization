@@ -17,4 +17,3 @@ List with the discretized dataframe and a vector of cutpoints.
 \description{
 Discretize a continuous database by quantile.
 }
-

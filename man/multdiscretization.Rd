@@ -4,7 +4,7 @@
 \alias{multdiscretization}
 \title{Multivariate Discretization.}
 \usage{
-multdiscretization(train, test)
+multdiscretization(train, test, alpha = 0.005)
 }
 \arguments{
 \item{train}{Train Dataframe.}
@@ -17,4 +17,3 @@ Discretized Dataframe.
 \description{
 Multivariate Discretization.
 }
-

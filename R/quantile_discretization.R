@@ -36,18 +36,16 @@ cutpoints = function(x, n=30) {
     quants = seq(from=0, to=1, by=(100/n_perc)/100); quants[length(quants)] = 1
     #quants = quants[c(-1, -length(quants))]
 
-    cpts = quantile(x, quants)
+    cpts = quantile(x, quants, na.rm=T)
     #print(cpts)
   } else { stop("Error: Data must have at least 30 observations.")}
   unique(cpts[order(cpts)])
 }
 
 # Quantile discretization for univariate model.
-quantileDisc = function(cov1,n=30) {
-
+quantileDisc = function(cov1, n=30) {
   cuts <- cutpoints(cov1, n)
   cuts_val = numeric()
-  #cuts[length(cuts)] = max(cov1)
   cuts[1] = -Inf
   disc = findInterval(cov1, cuts, rightmost.closed = T)
   while  ( sum(table(disc) < 30) > 0 )
@@ -65,7 +63,6 @@ quantileDisc = function(cov1,n=30) {
   cuts[1] = -Inf;cuts[length(cuts)] = Inf;
   if (length(cuts_val) > 0)
   {
-    cuts = cuts[-cuts_val]
     disc = findInterval(cov1, cuts, rightmost.closed = T)
   }
   list('data'=disc, 'cuts'=cuts)
@@ -87,24 +84,22 @@ quantileDisc = function(cov1,n=30) {
 # }
 
 DiscByQuantile = function(db, n = 30) {
-  len = length(db)
-  Names = names(db)[-length(db)]
-  resp = db[, len]
-  List = list()
-  cuts = list()
+  len <- length(db)
+  Names <- names(db)[-length(db)]
+  resp <- db[, len]
+  cuts <- list()
   for (i in Names) {
-    #DB = data.frame(db[i], resp)
-    aux_ = quantileDisc(db[[i]], n)
-    aux = aux_$data
+    mask <- !is.na(db[[i]])
+    aux_ = quantileDisc(db[mask, i], n)
     cuts[[i]] = aux_$cuts
-    List[[i]] = aux
   }
-  #Dados Discretizados
-  DiscPerc = data.frame(List, resp)
-
-  list('data'=DiscPerc, 'cuts'=cuts)
+  for (i in Names){
+    aux <- cuts[[i]]
+    aux <- aux[-length(aux)]
+    db[, i] <- findInterval(db[, i], aux, rightmost.closed = T)
+  }
+  list('data'=db, 'cuts'=cuts)
 }
-
 
 #' Discretize a continuous database by quantile.
 #'

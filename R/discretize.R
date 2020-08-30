@@ -34,7 +34,7 @@ discretize <- function(db, meth = 4, alpha = 0.05, n=30) {
     cuts[[i]] <- aux$cutp
   }
   
-  db <- disc_from_cuts(db_copy, Qcuts, cuts)
+  db <- apply_univariate_cutpoints(db_copy, Qcuts, cuts)
   list(data=db, qcuts=Qcuts, cuts=cuts) 
 }
 

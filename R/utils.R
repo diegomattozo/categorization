@@ -64,7 +64,7 @@ initialize_cutpoints = function(varNames) {
 #' @export
 #'
 #' @examples
-disc_from_cuts <- function (db, quantile_cutpoints, cutpoints) {
+apply_univariate_cutpoints <- function (db, quantile_cutpoints, cutpoints) {
   len <- length(db)
   Names <- names(db)[-length(db)]
   respName <- names(db)[len]

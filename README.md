@@ -39,6 +39,7 @@ In this method the best cutpoints are selected from a validation dataset to avoi
 #### Helper methods
 
 `apply_univariate_cutpoints(db, quantile_cutpoints, cutpoints)`
+
 This function applies the cutpoints returned from the univariate method in a new dataset.
 
 `train_test_split(db, test_percentual, seed)`

@@ -1,5 +1,5 @@
 # Code from discretization package
-chiSq = function (tb) 
+chiSq = function (tb)
 {
   tb <- tb + 1e-04
   e <- tb
@@ -16,7 +16,7 @@ chiSq = function (tb)
   val <- sum((tb - e)^2/e)
   return(val)
 }
-topdown = function (data, method = 1, alpha) 
+topdown = function (data, method = 1, alpha)
 {
   maxP <- 28
   p1 <- length(data[1, ])
@@ -36,7 +36,7 @@ topdown = function (data, method = 1, alpha)
     addCut <- NULL
     ci <- NULL
     ci <- which(diff(xo) != 0)
-    if (!is.null(ci)) 
+    if (!is.null(ci))
       cuts <- (xo[ci] + xo[ci + 1])/2
     bd <- c(xo[1], xo[n])
     di <- cuts
@@ -61,7 +61,7 @@ topdown = function (data, method = 1, alpha)
   return(dCuts)
 }
 
-findBest = function (x, y, bd, di, method) 
+findBest = function (x, y, bd, di, method)
 {
   n <- length(y)
   bestC <- 0
@@ -80,17 +80,17 @@ findBest = function (x, y, bd, di, method)
     bd1 <- nb
     dff <- findInterval(x, bd1, rightmost.closed = TRUE)
     tb <- table(dff, y)
-    if (method == 1) 
+    if (method == 1)
       cacc <- caim(tb)
-    if (method == 2) 
+    if (method == 2)
       cacc <- cacc(tb)
-    if (method == 3) 
+    if (method == 3)
       cacc <- ameva(tb)
     if (method == 4)
       cacc <- info_statistic(tb)
     if(method == 5)
       cacc <- kendal(tb)
-    if (method == 6) 
+    if (method == 6)
       cacc <- somersd(tb)
     if (cacc > bestC) {
       bestC <- cacc
@@ -98,26 +98,26 @@ findBest = function (x, y, bd, di, method)
       addCut <- di[i]
     }
   }
-  if (!is.na(iBest)) 
+  if (!is.null(iBest) && !is.na(iBest))
     newDi <- di[-iBest]
-  return(list(addCut = addCut, cacc = bestC, newDi = newDi, 
+  return(list(addCut = addCut, cacc = bestC, newDi = newDi,
               bd = bd))
 }
 
-insert = function (x, a) 
+insert = function (x, a)
 {
   p <- length(a)
   i <- which(a > x)
   len <- length(i)
-  if (len == p) 
+  if (len == p)
     return(c(x, a))
-  if (len == 0) 
+  if (len == 0)
     return(c(a, x))
   i1 <- i[1]
   return(c(a[1:(i1 - 1)], x, a[i1:p]))
 }
 
-disc.Topdown = function (data, method = 1, alpha = 1.05) 
+disc.Topdown = function (data, method = 1, alpha = 1.05)
 {
   type <- c("CAIM", "CACC", "ameva", "Info Statistic", "Kendal-TauC", "SomersD")
   meth <- type[method]
@@ -126,7 +126,7 @@ disc.Topdown = function (data, method = 1, alpha = 1.05)
   xd <- data
   for (i in 1:p) {
     cuts <- cutList[[i]]
-    xd[, i] <- as.data.frame(as.integer(findInterval(data[, 
+    xd[, i] <- as.data.frame(as.integer(findInterval(data[,
                                                           i], cuts, rightmost.closed = TRUE)))
   }
   list(cutp = cutList, Disc.data = xd)
